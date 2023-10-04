@@ -61,3 +61,12 @@ GraphQLError: Syntax Error: Unexpected <EOF>.
 
 Node.js v18.17.1
 ```
+
+Even adding `documents` won't prevent the error
+```
+// graphql.config.js
+module.exports = {
+  schema: getPaths().generated.schema,
+  documents: './web/src/**/!(*.d).{ts,tsx,js,jsx}',
+}
+```
