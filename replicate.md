@@ -32,7 +32,7 @@ export const QUERY = gql`
       ...UserExampleFields
     }
   }
-````
+```
 
 Now generating types will through a syntax error
 ```
@@ -69,4 +69,17 @@ module.exports = {
   schema: getPaths().generated.schema,
   documents: './web/src/**/!(*.d).{ts,tsx,js,jsx}',
 }
+```
+
+Solved if QUERY is changed into a function
+
+```
+export const QUERY = () => gql`
+  ${USER_EXAMPLE_FRAGMENT}
+  query FindUserExampleById($id: Int!) {
+    userExample: userExample(id: $id) {
+      ...UserExampleFields
+    }
+  }
+`
 ```
